@@ -10,7 +10,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 <meta name="robots" content="noindex">
 <html>
 <head>
-<meta name="description" content="Color clock">
+  <meta name="description" content="Color clock">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link href="https://fonts.googleapis.com/css?family=Wire+One" rel="stylesheet">
@@ -20,36 +20,25 @@ Released under the MIT license: http://jsbin.mit-license.org
   margin: 0;
   padding: 0;
 }
-
+html, body {
+  height: 100%;
+}
 #clock{
   text-align: center;
   position: relative;
   bottom:-50%;
   font-family: 'Wire One', sans-serif;
   font-size: 90px;
-  margin-top: -100px; /*-45px*/
-
-/*
-   top: 50%;
-
-   position: absolute;
-   top: 292px;
-   left: 192px;
-*/
+  margin-top: -100px; /* -45px center */
 }
 
-/*
-display: none;
-*/
 
-html, body {
-  height: 100%;
-}
+
 
 </style>
 </head>
 <body>
-<div id="clock">12:13:14</div>
+  <div id="clock">12:13:14</div>
 <script id="jsbin-javascript">
 function colorClock() {
   var date = new Date();

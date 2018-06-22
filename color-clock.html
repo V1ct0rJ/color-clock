@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by V1ct0rJ (http://jsbin.com/lopekat/9/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="Color clock">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://fonts.googleapis.com/css?family=Wire+One" rel="stylesheet">
+  <title>Color clock</title>
+<style id="jsbin-css">
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#clock{
+  text-align: center;
+  position: relative;
+  bottom:-50%;
+  font-family: 'Wire One', sans-serif;
+  font-size: 90px;
+  margin-top: -100px; /*-45px*/
+
+/*
+   top: 50%;
+
+   position: absolute;
+   top: 292px;
+   left: 192px;
+*/
+}
+
+/*
+display: none;
+*/
+
+html, body {
+  height: 100%;
+}
+
+</style>
+</head>
+<body>
+<div id="clock">12:13:14</div>
+<script id="jsbin-javascript">
+function colorClock() {
+  var date = new Date();
+  
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var secondsForColor = seconds;
+  var hexColor;
+  
+  function secondsKey_16_To_59(){
+    switch (secondsForColor) {
+      case 16:
+      case 31:
+      case 46:
+        secondsForColor ='e';
+        break;
+      case 17:
+      case 32:
+      case 47:
+        secondsForColor ='d';
+        break;
+      case 18:
+      case 33:
+      case 48:
+        secondsForColor ='c';
+        break;
+      case 19:
+      case 34:
+      case 49:
+        secondsForColor ='b';
+        break;
+      case 20:
+      case 35:
+      case 50:
+        secondsForColor ='a';
+        break;
+      case 21:
+      case 36:
+      case 51:
+        secondsForColor ='9';
+        break;
+      case 22:
+      case 37:
+      case 52:
+        secondsForColor ='8';
+        break;
+      case 23:
+      case 38:
+      case 53:
+        secondsForColor ='7';
+        break;
+      case 24:
+      case 39:
+      case 54:
+        secondsForColor ='6';
+        break;
+      case 25:
+      case 40:
+      case 55:
+        secondsForColor ='5';
+        break;
+      case 26:
+      case 41:
+      case 56:
+        secondsForColor ='4';
+        break;
+      case 27:
+      case 42:
+      case 57:
+        secondsForColor ='3';
+        break;
+      case 28:
+      case 43:
+      case 58:
+        secondsForColor ='2';
+        break;
+      case 29:
+      case 44:
+      case 59:
+        secondsForColor ='1';
+        break;
+      case 30:
+        secondsForColor ='0';
+    }
+    return secondsForColor;
+  }
+  
+  function secondsKey_10_To_59(){
+    switch (secondsForColor) {
+      case 31:
+      case 46:
+        secondsForColor ='1';
+        break;
+      case 32:
+      case 47:
+        secondsForColor ='2';
+        break;
+      case 33:
+      case 48:
+        secondsForColor ='3';
+        break;
+      case 34:
+      case 49:
+        secondsForColor ='4';
+        break;
+      case 35:
+      case 50:
+        secondsForColor ='5';
+        break;
+      case 36:
+      case 51:
+        secondsForColor ='6';
+         break;
+      case 37:
+      case 52:
+        secondsForColor ='7';
+        break;
+      case 38:
+      case 53:
+        secondsForColor ='8';
+        break;
+      case 39:
+      case 54:
+        secondsForColor ='9';
+        break;
+      case 10:
+      case 40:
+      case 55:
+        secondsForColor ='a';
+        break;
+      case 11:
+      case 41:
+      case 56:
+        secondsForColor ='b';
+        break;
+      case 12:
+      case 42:
+      case 57:
+        secondsForColor ='c';
+        break;
+      case 13:
+      case 43:
+      case 58:
+        secondsForColor ='d';
+        break;
+      case 14:
+      case 44:
+      case 59:
+        secondsForColor ='e';
+        break;
+      case 15:
+      case 45:
+        secondsForColor ='f';
+    }
+    return secondsForColor;
+  }
+  
+  function spectrumA(){
+    if (seconds < 10) {
+      hexColor = '#ff' + secondsForColor + '000';
+    }
+    else if (seconds > 9 && seconds < 16){
+      secondsKey_10_To_59(); 
+      hexColor = '#ff' + secondsForColor + '000';
+    }
+    else if (seconds > 15 && seconds < 31){
+     secondsKey_16_To_59();
+     hexColor = '#' + secondsForColor + 'ff000';
+    }
+    else if (seconds > 30 && seconds < 46){
+      secondsKey_10_To_59();
+      hexColor = '#00ff' + secondsForColor + '0';
+  }
+    else if (seconds > 45){
+      secondsKey_16_To_59();
+      hexColor = '#00' + secondsForColor + 'fff';
+    }
+  } 
+  
+  function spectrumB(){
+    if (seconds < 10) {
+      hexColor = '#' + secondsForColor + '00fff';
+    }
+    else if (seconds > 9 && seconds < 16){
+      secondsKey_10_To_59();
+      hexColor = '#' + secondsForColor + '00fff';
+    }
+    else if (seconds > 15 && seconds < 31){
+      secondsKey_16_To_59();
+      hexColor = '#ff0f' + secondsForColor + 'f';
+    }   
+    else if (seconds > 30 && seconds < 45){
+      secondsKey_16_To_59();
+      hexColor = '#' + secondsForColor + 'f0f0f';
+    }
+    else if (seconds === 45){
+      hexColor = '#000000';
+    } 
+    else if (seconds > 45){
+      secondsKey_10_To_59();
+      hexColor = '#' + secondsForColor + 'f0000';
+    } 
+  }
+  
+  if(minutes % 2 === 0) {
+    spectrumA();
+  }
+  else{
+    spectrumB();
+  }
+  
+  if(minutes < 1 && seconds < 1) { 
+    document.getElementById('clock').style.fontWeight = "600";
+  }
+  else {
+    document.getElementById('clock').style.fontWeight = "normal";  
+  }
+  
+  if (hours < 10) {
+    hours = '0' + hours;
+  }
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+  if (seconds < 10){
+    seconds = '0' + seconds;
+  }
+
+  var clockFace = hours+'⥐'+minutes+'⥎'+seconds;
+
+  document.body.style.background = hexColor;
+  document.getElementById('clock').innerHTML = clockFace;
+  
+  setTimeout(function() {
+    colorClock();
+  }, 1000);
+}
+
+colorClock();
+</script>
+</body>
+</html>
